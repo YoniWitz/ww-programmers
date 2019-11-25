@@ -1,6 +1,6 @@
 <template>
   <div class="signup container">
-    <form class="card-panel">
+    <form v-on:submit.prevent="signup" class="card-panel">
       <h2 class="center deep-purple-text">Signup</h2>
       <div class="field">
         <label for="email">Email:</label>
@@ -31,6 +31,9 @@ export default {
       password: "",
       alias: ""
     };
+  },
+  methods:{
+      signup(){}
   }
 };
 </script>
