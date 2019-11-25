@@ -1,6 +1,5 @@
 <template>
   <div class="map">
-    <h2>Map</h2>
     <div class="google-map" id="map"></div>
   </div>
 </template>
