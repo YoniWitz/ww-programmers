@@ -1,4 +1,4 @@
-# yoni-programmers
+# ww-programmers
 
 ## Project setup
 ```
