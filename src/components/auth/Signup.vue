@@ -12,10 +12,10 @@
       </div>
       <div class="field">
         <label for="alias">Alias:</label>
-        <input type="text" name="alias"  v-bind:value="alias" disabled/>
+        <input type="text" name="alias" v-model="alias" />
       </div>
       <p class="red-text center">{{feedback}}</p>
-     
+
       <div class="field center">
         <button class="btn deep-purple">Signup</button>
       </div>
@@ -24,8 +24,9 @@
 </template>
 
 <script>
-import slugify from 'slugify'
-import db from '@/Firebase/init'
+import slugify from "slugify";
+import db from "@/firebase/init";
+import firebase from 'firebase'
 export default {
   name: "Signup",
   data() {
@@ -34,39 +35,39 @@ export default {
       password: "",
       alias: "",
       feedback: "",
-      slug:""
+      slug: ""
     };
   },
   methods: {
     signup() {
-      if (this.alias && this.feedback ==="") {
-         this.slug=alias;          
-      } else {
-        this.feedback = "Please enter unused email";
-      }
-    }
-  },
-  watch:{
-    email(newEmail, oldEmail){
-      this.alias= slugify(newEmail, {
-        replacement: '-',
-        remove: /[$*_+~.()'"!\-:@']/g,
-        lower:true
-      })
+      if (this.alias && this.email && this.password) {
+        this.slug = slugify(this.alias, {
+          replacement: "-",
+          remove: /[$*_+~.()'"!\-:@]/g,
+          lower: true
+        });
 
-      db.collection('users').doc(this.alias).get()
-      .then(doc => {
-        if(doc.exists){
-          this.feedback = "this email is already used";
-        }
-        else{
-          this.feedback = "go ahead, sign up";
-        }
-      })
+        db.collection("users")
+          .doc(this.slug)
+          .get()
+          .then(doc => {
+            if (doc.exists) {
+              this.feedback = "this alias is already used";
+            } else {
+              firebase.auth().createUserWithEmailAndPassword(
+                this.email, this.password)
+                .catch(err => {
+                  console.log(err);
+                  this.feedback = err.message;
+                })
+            }
+          });
+      } else {
+        this.feedback = "Please enter unused alias";
+      }
     }
   }
 };
-
 </script>
 
 <style scoped>
