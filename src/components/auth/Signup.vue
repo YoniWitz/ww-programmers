@@ -26,7 +26,7 @@
 <script>
 import slugify from "slugify";
 import db from "@/firebase/init";
-import firebase from 'firebase'
+import firebase from "firebase";
 export default {
   name: "Signup",
   data() {
@@ -54,12 +54,23 @@ export default {
             if (doc.exists) {
               this.feedback = "this alias is already used";
             } else {
-              firebase.auth().createUserWithEmailAndPassword(
-                this.email, this.password)
-                .catch(err => {
-                  console.log(err);
-                  this.feedback = err.message;
+              this.feedback = "";
+              firebase
+                .auth()
+                .createUserWithEmailAndPassword(this.email, this.password)
+                .then(cred => {
+                  db.collection("users")
+                    .doc(this.slug)
+                    .set({
+                      alias: this.alias,
+                      geolocation: null,
+                      user_id: cred.user.uid
+                    });
                 })
+                .then(this.$router.push({ name: "GMap" }))
+                .catch(err => {
+                  this.feedback = err.message;
+                });
             }
           });
       } else {

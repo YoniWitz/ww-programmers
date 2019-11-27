@@ -9,7 +9,7 @@ Vue.use(Router)
 const routes = [
     {
         path: '/',
-        name: 'gMap',
+        name: 'GMap',
         component: GMap
     },
     {
