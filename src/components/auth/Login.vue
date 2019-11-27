@@ -43,7 +43,7 @@ export default {
             this.$router.push({ name: "GMap" })
             })
           .catch(error => {
-            this.feedback = error;
+            this.feedback = error.message;
           });
       } else {
         this.feedback = "please enter credentials";
