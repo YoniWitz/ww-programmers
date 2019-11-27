@@ -68,9 +68,7 @@ export default {
                     });
                 })
                 .then(this.$router.push({ name: "GMap" }))
-                .catch(err => {
-                  this.feedback = err.message;
-                });
+                .catch(err => this.feedback = err.message);
             }
           });
       } else {
