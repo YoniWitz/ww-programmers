@@ -74,7 +74,7 @@ export default {
             }
           });
       } else {
-        this.feedback = "Please enter unused alias";
+        this.feedback = "Please enter alias";
       }
     }
   }
