@@ -1,0 +1,58 @@
+<template>
+  <div class="login container">
+    <form v-on:submit.prevent="login" class="card-panel">
+      <h2 class="center deep-purple-text">Login</h2>
+      <div class="field">
+        <label for="email">Email:</label>
+        <input type="email" name="email" v-model="email" />
+      </div>
+      <div class="field">
+        <label for="password">Password:</label>
+        <input type="password" name="password" v-model="password" />
+      </div>
+
+      <p class="red-text center">{{feedback}}</p>
+
+      <div class="field center">
+        <button class="btn deep-purple">Login</button>
+      </div>
+    </form>
+  </div>
+</template>
+
+<script >
+export default {
+  name: "Login",
+  data() {
+    return {
+      feedback: "",
+      email: "",
+      password: ""
+    };
+  },
+  methods: {
+    login() {
+      if (this.email && this.password) {
+        this.feedback = "logged in";
+      } else {
+        this.feedback = "please enter credentials";
+      }
+    }
+  }
+};
+</script>
+
+<style scoped>
+.login {
+  max-width: 400px;
+  margin-top: 60px;
+}
+
+.login h2 {
+  font-size: 2.4em;
+}
+
+.login .field {
+  margin-bottom: 16px;
+}
+</style>
