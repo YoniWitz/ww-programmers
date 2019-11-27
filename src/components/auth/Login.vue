@@ -20,7 +20,8 @@
   </div>
 </template>
 
-<script >
+<script>
+import firebase from "firebase";
 export default {
   name: "Login",
   data() {
@@ -33,7 +34,17 @@ export default {
   methods: {
     login() {
       if (this.email && this.password) {
-        this.feedback = "logged in";
+        this.feedback = "";
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(this.email, this.password)
+          .then(cred => {
+            console.log(cred);
+            this.$router.push({ name: "GMap" })
+            })
+          .catch(error => {
+            this.feedback = error;
+          });
       } else {
         this.feedback = "please enter credentials";
       }
