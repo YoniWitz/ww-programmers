@@ -39,7 +39,7 @@ export default {
         .then(() => {
             console.log("Signed Out");
             this.$router.push({name:'Login'})
-            this.loggedIn = false;
+            this.user = null;
         })
         .catch(err => console.error("Sign Out Error", error));
     }
