@@ -39,7 +39,6 @@ export default {
           .auth()
           .signInWithEmailAndPassword(this.email, this.password)
           .then(cred => {
-            console.log(cred);
             this.$router.push({ name: "GMap" })
             })
           .catch(error => {

@@ -5,12 +5,12 @@
         <router-link :to="{name:'GMap'}">WW-Programmers</router-link>
         <ul class="right">
           <li>
-            <router-link :to="{name:'Signup'}">Signup</router-link>
+            <router-link v-if="!loggedIn" :to="{name:'Signup'}">Signup</router-link>
           </li>
           <li>
-             <router-link :to="{name:'Login'}">Login</router-link>
+             <router-link v-if="!loggedIn" :to="{name:'Login'}">Login</router-link>
           </li>
-          <li>
+          <li v-if="loggedIn">
             <a v-on:click="logout">Logout</a>
           </li>
         </ul>
@@ -24,7 +24,9 @@ import firebase from "firebase";
 export default {
   name: "Navbar",
   data() {
-    return {};
+    return {
+      loggedIn: false
+    };
   },
   methods: {
     logout() {
@@ -34,9 +36,14 @@ export default {
         .then(() => {
             console.log("Signed Out");
             this.$router.push({name:'Login'})
+            this.loggedIn = false;
         })
         .catch(err => console.error("Sign Out Error", error));
     }
+  },
+  created(){
+    let user = firebase.auth().currentUser
+    this.loggedIn = user? true : false
   }
 };
 </script>
