@@ -2,15 +2,18 @@
   <div class="navbar">
     <nav class="deep-purple darken-1">
       <div class="container">
-        <router-link :to="{name:'GMap'}">WW-Programmers</router-link>
+        <router-link :to="{name:'GMap'}" class="brand-logo left">WW-Programmers</router-link>
         <ul class="right">
           <li>
-            <router-link v-if="!loggedIn" :to="{name:'Signup'}">Signup</router-link>
+            <router-link v-if="!user" :to="{name:'Signup'}">Signup</router-link>
           </li>
           <li>
-             <router-link v-if="!loggedIn" :to="{name:'Login'}">Login</router-link>
+             <router-link v-if="!user" :to="{name:'Login'}">Login</router-link>
           </li>
-          <li v-if="loggedIn">
+          <li>
+             <a v-if="user">{{user.email}}</a>
+          </li>
+          <li v-if="user">
             <a v-on:click="logout">Logout</a>
           </li>
         </ul>
@@ -25,7 +28,7 @@ export default {
   name: "Navbar",
   data() {
     return {
-      loggedIn: false
+      user: null
     };
   },
   methods: {
@@ -43,7 +46,7 @@ export default {
   },
   created(){
     let user = firebase.auth().currentUser
-    this.loggedIn = user? true : false
+    this.user = user? user : null
   }
 };
 </script>
