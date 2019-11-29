@@ -21,7 +21,7 @@ export default {
         pos => {
           this.lat = pos.coords.latitude;
           this.lng = pos.coords.longitude;
-          this.saveGeoLocationToUser();         
+          this.saveGeoLocationToUser();
         },
         err => {
           console.log(err);
@@ -42,10 +42,33 @@ export default {
         minZoom: 3,
         streetViewControl: false
       });
+
+      db.collection("users")
+        .get()
+        .then(users => {
+          users.forEach(doc => {
+            let geolocation = doc.data().geolocation;
+
+            if (geolocation.lat && geolocation.lng) {
+              let marker = new google.maps.Marker({
+                position: geolocation,
+                map: map,
+                title: doc.data().alias
+              });
+
+              marker.addListener("click", function() {
+                map.setZoom(8);
+                map.setCenter(marker.getPosition());
+                console.log(marker.title);
+              });
+            }
+          });
+        })
+        .catch(err => console.log(err));
     },
     saveGeoLocationToUser() {
       let uid = firebase.auth().currentUser.uid;
-      
+
       db.collection("users")
         .where("user_id", "==", uid)
         .get()
@@ -54,7 +77,7 @@ export default {
           db.collection("users")
             .doc(id)
             .update({
-              geolocation: { lat: this.lat, lan: this.lng }
+              geolocation: { lat: this.lat, lng: this.lng }
             })
             .catch(err => console.log(err));
         })
