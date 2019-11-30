@@ -65,8 +65,8 @@ export default {
                       geolocation: null,
                       user_id: cred.user.uid
                     });
+                    this.$router.push({ name: "GMap" })
                 })
-                .then(this.$router.push({ name: "GMap" }))
                 .catch(err => this.feedback = err.message);
             }
           });

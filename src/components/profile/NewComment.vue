@@ -26,7 +26,7 @@ export default {
         db.collection("comments")
           .add({
             to: this.profile.id,
-            from: this.user.id,
+            from: this.user.alias,
             comment: this.newComment,
             time: Date.now()
           })
@@ -45,4 +45,17 @@ export default {
 </script>
 
 <style scoped>
+button {
+  cursor: pointer;
+  padding: 0.85rem 2.29rem;
+  border-radius: 4px;
+  margin-right: 1.36rem;
+  background-color: #4c7ef3;
+  font-size: 1.14rem;
+  color: #ffffff;
+  transition: 0.25s;
+}
+button:hover {
+  background-color: #1e5df1;
+}
 </style>

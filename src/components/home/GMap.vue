@@ -59,7 +59,8 @@ export default {
               marker.addListener("click", () => {
                 map.setZoom(8);
                 map.setCenter(marker.getPosition());
-                this.$router.push({name:'ViewProfile', params:{id:doc.id}})
+                setTimeout(() => {this.$router.push({name:'ViewProfile', params:{id:doc.id}})}, 500);
+                
               });
             }
           });
