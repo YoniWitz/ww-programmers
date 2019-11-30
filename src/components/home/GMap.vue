@@ -56,10 +56,10 @@ export default {
                 title: doc.data().alias
               });
 
-              marker.addListener("click", function() {
+              marker.addListener("click", () => {
                 map.setZoom(8);
                 map.setCenter(marker.getPosition());
-                console.log(marker.title);
+                this.$router.push({name:'ViewProfile', params:{id:doc.id}})
               });
             }
           });
