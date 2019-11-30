@@ -34,8 +34,7 @@ export default {
       email: "",
       password: "",
       alias: "",
-      feedback: "",
-      slug: ""
+      feedback: ""
     };
   },
   methods: {

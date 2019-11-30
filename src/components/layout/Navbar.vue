@@ -39,14 +39,13 @@ export default {
         .then(() => {
             console.log("Signed Out");
             this.$router.push({name:'Login'})
-            this.user = null;
         })
         .catch(err => console.error("Sign Out Error", error));
     }
   },
   created(){
-    let user = firebase.auth().currentUser
-    this.user = user? user : null
+    firebase.auth().onAuthStateChanged(user =>
+      this.user = user? user : null)
   }
 };
 </script>
