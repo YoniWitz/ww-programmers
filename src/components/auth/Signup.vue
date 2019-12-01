@@ -46,11 +46,10 @@ export default {
           lower: true
         });
 
-        db.collection("users")
-          .doc(this.slug)
-          .get()
-          .then(doc => {
-            if (doc.exists) {
+        let checkAlias = firebase.functions().httpsCallable('checkAlias');
+        checkAlias({slug:this.slug})
+        .then(result => {
+            if (!result.data.unique) {
               this.feedback = "this alias is already used";
             } else {
               this.feedback = "";
