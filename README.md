@@ -4,7 +4,7 @@ Allows users around the world to sign up and log in where ever they are at. The 
 
 ## You can use it [here](https://ww-programmers.firebaseapp.com/)
 
-<image src="assets/ww-programmers.png">
+<image src="./src/assets/ww-programmers.png">
 
 ## Summary
 
