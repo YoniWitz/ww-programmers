@@ -49,7 +49,7 @@ export default {
           users.forEach(doc => {
             let geolocation = doc.data().geolocation;
 
-            if (geolocation.lat && geolocation.lng) {
+            if (geolocation && geolocation.lat && geolocation.lng) {
               let marker = new google.maps.Marker({
                 position: geolocation,
                 map: map,
