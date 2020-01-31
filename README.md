@@ -19,7 +19,7 @@ My ultimate goal is to land a job that incorporates my skills and utilizes my ab
 ##  Installation Instructions
 
 1. Download Repository
-2. From command line, run 'yarn serve' in root directory
+2. From root directory, run 'yarn install' then 'yarn serve' in command line
 3. In browser, redirect to localhost where 'client' is running on (typically: http://localhost:8080/)
 4. Enjoy!
 
