@@ -16,7 +16,7 @@
 
 <script>
 import firebase from "firebase";
-import db from "@/firebase/init";
+import db from "@/firebase/init.js";
 import NewComment from "@/components/profile/NewComment.vue";
 export default {
   name: "ViewProfile",

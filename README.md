@@ -1,4 +1,4 @@
-# Expense Tracker
+# WW-Programmers
 
 Allows users around the world to sign up and log in where ever they are at. The Map app will then display a pin drop at their current location. Once logged in, the user can chat with other users of the app. All chat rooms are saved in the db so users can log out, log back in and continue conversation where they left from. Written in Vue.js, uses Firebase for database purposes, User Authorization and deployment.
 
